@@ -1,6 +1,6 @@
 # README
 
-### [> Live demo <](https://surfingnet.github.io/PokeMMO-Optimal-Party/)
+### <a href="https://surfingnet.github.io/PokeMMO-Optimal-Party/" target="_blank">Live demo</a>
 
 ## Features
 - Quick overview of the best monsters, type-wise and stats-wise, at a maximum tier.
