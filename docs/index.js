@@ -1119,7 +1119,10 @@ const onContendersButtonClick = async () => {
     });
 
     //number of workers/threads. if 0 (default) then as many logical cores available are used
-    const numWorkers = Number(document.getElementById('selector-paragraph2').querySelector('select').value) || navigator.hardwareConcurrency;
+    const numWorkers = Number(document.getElementById('selector-paragraph2').querySelector('select').value)
+        == -1 ? 
+            Math.max(2, Math.floor(navigator.hardwareConcurrency * 2/3)) : 
+            Number(document.getElementById('selector-paragraph2').querySelector('select').value) || navigator.hardwareConcurrency;
 
     /**
      * Calculates the number of combinations of k items in a set of size n.
@@ -1361,7 +1364,7 @@ const onContendersButtonClick = async () => {
         return;
     }
 
-    await sleep(500);
+    await sleep(2000);
 
     // tells workers to start computing since all workers are done precomputing
     workers.forEach((worker) => { worker.postMessage({ go: 1 }) });

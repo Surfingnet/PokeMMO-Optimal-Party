@@ -89,9 +89,10 @@ Galla
     </form>
 
     <div id="cpuPrompt" style="display: none;">
-        <p id="selector-paragraph2">Spread the workload across  
+        <p id="selector-paragraph2">Spread the workload across 
             <select class="inline-select">
-                <option value="0" selected>all available logical cores.</option>
+                <option value="-1" selected>2/3 of the available cpu cores. (default)</option>
+                <option value="0">as many threads as available cpu cores.</option>
                 <option value="2">2 threads.</option>
                 <option value="4">4 threads.</option>
                 <option value="6">6 threads.</option>

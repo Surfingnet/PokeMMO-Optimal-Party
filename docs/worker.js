@@ -17,29 +17,29 @@ const worker_function = async () => {
      */
     async function makeChunk(id, arr, k, startIndex, totalCombinations, chunkSize) {
         try {
-            const result = [];
+            const result = new Array(Math.min(chunkSize, totalCombinations - startIndex));
+            var resultCrawler = 0;
+
             var counter = 0;
 
             async function helper(start, current) {
                 if (current.length === k) {
                     if (counter >= startIndex) {
-                        result.push([...current]); // Ajouter une copie du tableau courant
+                        result[resultCrawler++] = [...current]; // Ajouter une copie du tableau courant
                     }
                     counter++;
                     return;
                 }
 
-                for (let i = start; i < arr.length && counter < (startIndex + chunkSize); i++) {
+                for (var i = start; i < arr.length && counter < (startIndex + chunkSize); i++) {
                     current.push(arr[i]); // Ajouter l'élément courant
                     await helper(i + 1, current); // Recurse avec l'élément suivant
                     current.pop(); // Retirer l'élément pour revenir à l'état précédent
 
                     if (counter % 10000 === 0) {
-                        //document.getElementById('content').innerHTML = `${(100 * counter / totalCombinations).toFixed(2)}%`;
                         if (counter / totalCombinations !== 1.0) {
                             self.postMessage({ id: id, progress: Math.min(0.99, Math.max(0, counter / (startIndex + chunkSize))) });
                         }
-                        //await sleep(1); // Pause pour éviter les blocages
                     }
                 }
             }
