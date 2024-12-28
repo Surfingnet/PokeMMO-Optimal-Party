@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIP</title>
+    <style>
+        #small-input {
+            width: 200px;
+            height: 60px;
+            overflow: scroll;
+            resize: none;
+        }
+
+        #small-input2 {
+            width: 200px;
+            height: 60px;
+            overflow: scroll;
+            resize: none;
+        }
+    </style>
+</head>
+<!-- I hate HTML it sucks -->
+<body>
+    <!-- BIG TEXT -->
+    <h1 id="title" style="display: block;">Paste the content of monsters.json</h1>
+
+    <form>
+        <!-- raw json paste form -->
+        <textarea id="small-input" rows="5" cols="60" name="text" placeholder="json content goes here"></textarea>
+    </form>
+
+    <div id="contendersPrompt" style="display: none;">
+        <p id="selector-paragraph">Find the best party  
+            <select class="inline-select">
+                <option value="20">in the top 20 contenders. (for testing)</option>
+                <option value="30">in the top 30 contenders.</option>
+                <option value="40">in the top 40 contenders.</option>
+                <option value="50" selected>in the top 50 contenders.</option>
+                <option value="60">in the top 60 contenders.</option>
+                <option value="70">in the top 70 contenders. (long)</option>
+                <option value="80">in the top 80 contenders. (long)</option>
+                <option value="90">in the top 90 contenders. (long)</option>
+                <option value="100">in the top 100 contenders. (extra long)</option>
+                <option value="120">in the top 120 contenders. (extra long)</option>
+                <option value="123">in the top 123 contenders. (theoric range limit, higher would crash Javascript)</option>
+                <option value="9999">in all contenders! (Listen Jimbo...)</option>
+            </select>
+            <!--contenders.-->
+        </p>
+    </div>
+
+    <h1 id="title2" style="display: block;">Bans, partial names work, one per line</h1>
+
+    <form>
+        <!-- BANS TODO -->
+        <textarea id="small-input2" rows="5" cols="60" name="text" placeholder="bans">
+Spiritomb
+Triopikeur
+Dugtrio
+Galla
+        </textarea>
+    </form>
+
+    <div id="cpuPrompt" style="display: none;">
+        <p id="selector-paragraph2">Spread the workload across  
+            <select class="inline-select">
+                <option value="0" selected>all available logical cores.</option>
+                <option value="2">2 threads.</option>
+                <option value="4">4 threads.</option>
+                <option value="6">6 threads.</option>
+                <option value="8">8 threads.</option>
+                <option value="10">10 threads.</option>
+                <option value="12">12 threads.</option>
+                <option value="14">14 threads.</option>
+                <option value="16">16 threads.</option>
+                <option value="18">18 threads.</option>
+                <option value="20">20 threads.</option>
+                <option value="22">22 threads.</option>
+                <option value="24">24 threads.</option>
+                <option value="26">26 threads.</option>
+                <option value="28">28 threads.</option>
+                <option value="30">30 threads.</option>
+                <option value="32">32 threads.</option>
+            </select>
+        </p>
+    </div>
+
+    <h1 id="title3" style="display: block;">All Good?</h1>
+
+    <!-- format button for text form above -->
+    <button id="formatButton" style="margin-top: 0px; padding: 10px 20px; font-size: 16px;">Next</button>
+
+    <div class="selectIcon">
+        <select id="tierSelect" style="display: none;">
+            <option value="0">Untiered</option>
+            <option value="1">Never Used</option>
+            <option value="2">Under Used</option>
+            <option value="3" selected>Over Used</option>
+        </select>
+    </div>
+
+    <button id="tierButton" style="margin-top: 25px; padding: 10px 20px; font-size: 16px; display: none;">Next</button>
+
+    <button id="contendersButton" style="margin-top: 28px; padding: 10px 20px; font-size: 16px; display: none;">Start</button>
+    
+
+    <div id="content" style="font-family: monospace; white-space: pre; font-size: 14px;">
+        <br>Note:<br><br>Always restart using CTRL+F5.<br>Do not use F5 alone.<br>Do not use the refresh button of your browser.<br><br>The window might freeze on pasting the JSON's content because it's huge.<br>Just wait.
+        <!-- Keep this at the bottom of the page -->
+        <!-- Logs or results will be displayed here -->
+    </div>
+
+    <div id="extraContent" style="font-family: monospace; white-space: pre; font-size: 14px; display: none;">
+        <!-- Keep this at the bottom of the page -->
+        <!-- Logs or results will be displayed here -->
+    </div>
+
+    <div id="time" style="font-family: monospace; white-space: pre; font-size: 14px;">
+        <!-- Keep this at the bottom of the page -->
+        <!-- Logs or results will be displayed here -->
+    </div>
+    
+    <div id="eta" style="font-family: monospace; white-space: pre; font-size: 14px;">
+        <!-- Keep this at the bottom of the page -->
+        <!-- Logs or results will be displayed here -->
+    </div>
+
+    <h1 id="end" style="display: none;">CTRL+F5 To Restart</h1>
+
+    <!--
+    for GPU compute
+    will happen, maybe (0.00001% chance)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gpu.js/1.0.2/gpu.min.js"></script>
+    -->
+    <script src="worker.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
