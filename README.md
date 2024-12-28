@@ -23,31 +23,31 @@
 
 1. **Go to settings**
    <details>
-     <summary>Afficher l'image</summary>
+     <summary>See image</summary>
      <img src="assets/1_settings.png" alt="Go to settings" width="400" />
    </details>
 
 2. **Go to utilities, Dump Moddable Resources**
    <details>
-     <summary>Afficher l'image</summary>
+     <summary>See image</summary>
      <img src="assets/2_dump.png" alt="Go to utilities, Dump Moddable Resources" width="400" />
    </details>
 
 3. **Select Monsterdex Data, click Yes**
    <details>
-     <summary>Afficher l'image</summary>
+     <summary>See image</summary>
      <img src="assets/3_monsterdex_data.png" alt="Select Monsterdex Data, click Yes" width="400" />
    </details>
 
 4. **Check confirmation popup**
    <details>
-     <summary>Afficher l'image</summary>
+     <summary>See image</summary>
      <img src="assets/4_confirm_dump.png" alt="Check confirmation popup" width="400" />
    </details>
 
 5. **Find the archive in dump/resources**
    <details>
-     <summary>Afficher l'image</summary>
+     <summary>See image</summary>
      <img src="assets/5_monsterjson.png" alt="Find the archive in dump/resources" width="400" />
    </details>
 
