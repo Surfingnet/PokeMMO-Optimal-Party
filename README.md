@@ -13,6 +13,11 @@
 - Take into account cancer tactics, specific skills or items.
 - Use your GPU (for now?)
 
+## Warning
+- Will max / heat up your CPU
+- Spreading the workload across a lot of threads increases RAM usage.
+- Expect 70 monsters on 12 threads to require 14Gb of free RAM.
+
 ## How it works
 - To be written
 - I'm tired

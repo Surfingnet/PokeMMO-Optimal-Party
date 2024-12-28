@@ -1,3 +1,4 @@
 -"how it works" in the README
 -fancy math formulas in the "how it works"
 -force one or more monsters in the parties to compute
+-restart button instead of ctrl+f5 text
