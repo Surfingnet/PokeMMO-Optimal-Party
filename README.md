@@ -15,14 +15,14 @@
 
 > [!NOTE]
 >
-> Requires the user to input the monsters data. (`monsters.json`)
-> This data is not provided here.
+> Requires the user to input the monsters data (`monsters.json`)
+> which is not provided here.
 > It can be dumped out of PokeMMO very easily.
 > More on that below.
 
 > [!WARNING]
 >
-> Will max and heat up your CPU
+> Will max and heat up your CPU.
 > Spreading the workload across a lot of threads increases RAM usage.
 > Expect the computation of all the combinations of 6 in 70 monsters (131 115 985 parties) spread across 12 threads to require **14Gb of free RAM**.
 
@@ -89,16 +89,16 @@
 
 ## Q/A
 
-- Reasons to make it party vs monster pool instead of party vs parties?
+- **Reasons to make it party vs monster pool instead of party vs parties?**
 Useless redundancy, since comparing a monster combination against all possible combinations is the same as comparing a monster combination against all other monsters ***a really big number*** of times. So we compare each party against the whole monster pool instead, only once, which gives the same result but in minutes instead of weeks.
 
-- Why so slow with big numbers?
+- **Why so slow with big numbers?**
 Javascript.
 
-- Why Javascript?
+- **Why Javascript?**
 You can use this in your web browser without downloading any file.
 
-- Why is the demo page so ugly?
+- **Why is the demo page so ugly?**
 Make the HTML yourself. I hate it.
 CSS? never heard of that.
 
