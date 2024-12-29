@@ -79,7 +79,7 @@
 - We get the score of the party against one monster by calculating the geometric average of all the **normalized edges** of the monsters in the party against the monster in the pool, but we gave twice as much weight in the average to the best monster in our team. In the context of a geometric average, it makes the highest **normalized edge** of the party (best monster to pick) as important as the ones of all the other monsters in the party. It is relavant because we can expect to be fighting a monster with our best counter around half the time(?).
 - The final score of a party is the geometric average of all the scores of the party against each monster of the pool.
 
-### Q/A
+## Q/A
 
 - Reasons to make it party vs monster pool instead of party vs parties?
 Useless redundancy, since comparing a monster combination against all possible combinations is the same as comparing a monster combination against all other monsters ***a really big number*** of times. So we compare each party against the whole monster pool instead, only once, which gives the same result but in minutes instead of weeks.
