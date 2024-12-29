@@ -822,7 +822,7 @@ const statdiff = (monster1, monster2) => {
         diff /= monster2.stats.sp_attack / monster1.stats.sp_defense;
     }
 
-    return Math.sqrt(Math.sqrt(diff));// double sqrt to normalized stat difference even more, so closer to 1, so even less importance than type edge, but still relevant sorting and same type edge
+    return Math.pow(diff, 0.25);// double sqrt to normalized stat difference even more, so closer to 1, so even less importance than type edge, but still relevant for sorting and same type edge
 };
 
 /**
