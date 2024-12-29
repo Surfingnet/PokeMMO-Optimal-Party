@@ -842,8 +842,8 @@ const typeEdgeByNormalizedStatDiff = (monster1, monster2) => {
     }
 
     let result = statdiff(monster1, monster2)
-        * Math.min(24, damageMult(monster1.types, monster2.types, false)// Max 24 to limit artificially huge advantage of immunity. 
-                        / damageMult(monster2.types, monster1.types, false));// Best edge without immunity is 4/0.25 = 16, I feel like 32 would be too much, 24 is ok
+        * Math.max(1 / 24, Math.min(24, damageMult(monster1.types, monster2.types, false)// Max 24 to limit artificially huge advantage of immunity. 
+                        / damageMult(monster2.types, monster1.types, false)));// Best edge without immunity is 4/0.25 = 16, I feel like 32 would be too much, 24 is ok
 
     typeEdgeByNormalizedStatDiffCache[key] = result;
     return result;
