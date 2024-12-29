@@ -37,8 +37,8 @@ const worker_function = async () => {
                     current.pop(); // Retirer l'élément pour revenir à l'état précédent
 
                     if (counter % 10000 === 0) {
-                        if (counter / totalCombinations !== 1.0) {
-                            self.postMessage({ id: id, progress: Math.min(0.99, Math.max(0, counter / (startIndex + chunkSize))) });
+                        if (counter / totalCombinations !== 1.0) {// 0.99...90 <- this 0 is important so it's not rounded up to 1.0
+                            self.postMessage({ id: id, progress: Math.min(0.9999999999999990, Math.max(0, counter / (startIndex + chunkSize))) });
                         }
                     }
                 }

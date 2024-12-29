@@ -63,7 +63,7 @@ const damageMult = (attackerTypes, defenderTypes, weightedBool) => {
                         case "ROCK":
                             return 0.5 ** (weightedBool ? typeCounter[defender[0]] : 1);
                         case "GHOST":
-                            return 0.001;
+                            return 0.00001;
                         case "DRAGON":
                             return 1;
                         case "DARK":
@@ -217,7 +217,7 @@ const damageMult = (attackerTypes, defenderTypes, weightedBool) => {
                         case "POISON":
                             return 1;
                         case "GROUND":
-                            return 0.001;
+                            return 0.00001;
                         case "FLYING":
                             return 2 ** (weightedBool ? typeCounter[defender[0]] : 1);
                         case "PSYCHIC":
@@ -309,7 +309,7 @@ const damageMult = (attackerTypes, defenderTypes, weightedBool) => {
                         case "ROCK":
                             return 2 ** (weightedBool ? typeCounter[defender[0]] : 1);
                         case "GHOST":
-                            return 0.001;
+                            return 0.00001;
                         case "DRAGON":
                             return 1;
                         case "DARK":
@@ -356,7 +356,7 @@ const damageMult = (attackerTypes, defenderTypes, weightedBool) => {
                         case "DARK":
                             return 1;
                         case "STEEL":
-                            return 0.001;
+                            return 0.00001;
                         case "FAIRY":
                             return 2 ** (weightedBool ? typeCounter[defender[0]] : 1);
                         default:
@@ -383,7 +383,7 @@ const damageMult = (attackerTypes, defenderTypes, weightedBool) => {
                         case "GROUND":
                             return 1;
                         case "FLYING":
-                            return 0.001;
+                            return 0.00001;
                         case "PSYCHIC":
                             return 1;
                         case "BUG":
@@ -477,7 +477,7 @@ const damageMult = (attackerTypes, defenderTypes, weightedBool) => {
                         case "DRAGON":
                             return 1;
                         case "DARK":
-                            return 0.001;
+                            return 0.00001;
                         case "STEEL":
                             return 0.5 ** (weightedBool ? typeCounter[defender[0]] : 1);
                         case "FAIRY":
@@ -570,7 +570,7 @@ const damageMult = (attackerTypes, defenderTypes, weightedBool) => {
                 case "GHOST":
                     switch (defender[0]) {
                         case "NORMAL":
-                            return 0.001;
+                            return 0.00001;
                         case "FIRE":
                             return 1;
                         case "WATER":
@@ -686,7 +686,7 @@ const damageMult = (attackerTypes, defenderTypes, weightedBool) => {
                         case "STEEL":
                             return 1;
                         case "FAIRY":
-                            return 0.001;
+                            return 0.00001;
                         default:
                             return 1;
                     }
@@ -822,7 +822,7 @@ const statdiff = (monster1, monster2) => {
         diff /= monster2.stats.sp_attack / monster1.stats.sp_defense;
     }
 
-    return Math.sqrt(diff);
+    return Math.sqrt(Math.sqrt(diff));
 };
 
 /**
@@ -842,8 +842,8 @@ const typeEdgeByNormalizedStatDiff = (monster1, monster2) => {
     }
 
     let result = statdiff(monster1, monster2)
-        * Math.min(8, damageMult(monster1.types, monster2.types, false)
-            / damageMult(monster2.types, monster1.types, false));
+        * Math.min(24, damageMult(monster1.types, monster2.types, false)// Max 24 to limit artificially huge advantage of immunity. 
+                        / damageMult(monster2.types, monster1.types, false));// Best edge without immunity is 4/0.25 = 16, I feel like 32 would be too much, 24 is ok
 
     typeEdgeByNormalizedStatDiffCache[key] = result;
     return result;
@@ -984,7 +984,7 @@ const onTierButtonClick = async () => {
     // filters out monsters of higher tiers
     formattedMonsters = formattedMonsters.filter((monster) => {
         return (monster.tiers <= desiredTier
-            /*&& monster.tiers >= desiredTier - 2*/);//<--not useful unless running on ultra-potato AND wanting to compute 100+ (stupid)
+            && monster.tiers >= desiredTier - 1);// ignores untiered and never-used monsters in over-used because not likely to see them (there are still under-used monsters in the pool for over-used)
     });
 
     console.log(formattedMonsters.length + ' monsters before purging');
@@ -1120,9 +1120,9 @@ const onContendersButtonClick = async () => {
 
     //number of workers/threads. if 0 (default) then as many logical cores available are used
     const numWorkers = Number(document.getElementById('selector-paragraph2').querySelector('select').value)
-        == -1 ? 
-            Math.max(2, Math.floor(navigator.hardwareConcurrency * 2/3)) : 
-            Number(document.getElementById('selector-paragraph2').querySelector('select').value) || navigator.hardwareConcurrency;
+        == -1 ?
+        Math.max(2, Math.floor(navigator.hardwareConcurrency * 2 / 3)) :
+        Number(document.getElementById('selector-paragraph2').querySelector('select').value) || navigator.hardwareConcurrency;
 
     /**
      * Calculates the number of combinations of k items in a set of size n.
