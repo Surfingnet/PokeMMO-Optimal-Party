@@ -62,7 +62,7 @@
 - It makes a pool out of all the monsters of a tier and the one tier lower.
 - It sorts the pool based on the arithmetic average of the **normalized edges** of one monster against all the other monsters of the pool.
 - It takes the top X monsters of the pool, makes as many combinations of 6 different elements in that set as possible.
-- It compares the performance of each team against all other monsters of the pool and gives the best one.
+- It compares the performance of <u>each party</u> against <u>all other monsters of the pool</u>, so not only against the monsters in the top X, and gives the best party.
 
 ### Long version
 
