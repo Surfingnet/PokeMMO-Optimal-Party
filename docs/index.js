@@ -910,6 +910,8 @@ const onFormatButtonClick = async () => {
         document.getElementById('title2').style.display = 'block';
         document.getElementById('title2').innerHTML = `CTRL+F5 to Restart.`;
         document.getElementById('content').innerHTML = `Error: ${error}`;
+        document.getElementById('extraContent').innerHTML = `<br>If you believe the issue wasn't caused by your input, it might be a bug on my end.<br>Please consider opening an <a href="https://github.com/Surfingnet/PokeMMO-Optimal-Party/issues/new" title="Github">issue</a>.`;
+        document.getElementById('extraContent').style.display = 'block';
         console.error(error);
         abort = true;
     }
@@ -1390,7 +1392,8 @@ const onContendersButtonClick = async () => {
         document.getElementById('title2').style.display = 'block';
         document.getElementById('title2').innerHTML = `CTRL+F5 to Restart. Try Lower sizes.`;
         document.getElementById('content').innerHTML = `Error: ${error}`;
-        document.getElementById('extraContent').innerHTML = ``;
+        document.getElementById('extraContent').innerHTML = `<br>If you believe the issue wasn't caused by your input, it might be a bug on my end.<br>Please consider opening an <a href="https://github.com/Surfingnet/PokeMMO-Optimal-Party/issues/new" title="Github">issue</a>.`;
+        document.getElementById('extraContent').style.display = 'block';
         console.error(error);
         return;
     }
@@ -1422,7 +1425,8 @@ const onContendersButtonClick = async () => {
         document.getElementById('title2').style.display = 'block';
         document.getElementById('title2').innerHTML = `CTRL+F5 to Restart. Try Lower sizes.`;
         document.getElementById('content').innerHTML = `Error: ${error}`;
-        document.getElementById('extraContent').innerHTML = ``;
+        document.getElementById('extraContent').innerHTML = `<br>If you believe the issue wasn't caused by your input, it might be a bug on my end.<br>Please consider opening an <a href="https://github.com/Surfingnet/PokeMMO-Optimal-Party/issues/new" title="Github">issue</a>.`;
+        document.getElementById('extraContent').style.display = 'block';
         console.error(error);
         return;
     }
