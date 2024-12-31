@@ -986,7 +986,7 @@ const onTierButtonClick = async () => {
     document.getElementById('tierSelect').style.display = 'none';
     document.getElementById('tierButton').style.display = 'none';
 
-    let desiredTier = document.getElementById('tierSelect').value;
+    desiredTier = document.getElementById('tierSelect').value;
 
     // filters out monsters of higher tiers
     formattedMonsters = formattedMonsters.filter((monster) => {
@@ -1098,7 +1098,7 @@ const onTierButtonClick = async () => {
                 </tr>
             `;
         });
-        table += "</table>";
+        table += "</table><br><br><br><br><br><br><br>";
         return table;
     }
 
@@ -1433,11 +1433,25 @@ const onContendersButtonClick = async () => {
 
     if (abort) { return };
 
+    let tierStr = ((i) => {
+        switch (i) {
+            case "0":
+                return "Untiered";
+            case "1":
+                return "Never Used";
+            case "2":
+                return "Under Used";
+            case "3":
+                return "Over Used";
+            default:
+                return "What tier already?";
+        }
+    })(desiredTier);
+
     document.getElementById('eta').innerHTML = ``;
     document.getElementById('content').innerHTML = ``;
     document.getElementById('extraContent').innerHTML = ``;
-
-    document.getElementById('title').innerHTML = `Optimal Party is:`;
+    document.getElementById('title').innerHTML = `The Optimal Party for ${tierStr} PVP is`;
 
     let partyToTable = (monsters) => {
         let table = "<table>";
