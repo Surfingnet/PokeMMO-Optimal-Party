@@ -899,8 +899,10 @@ const onFormatButtonClick = async () => {
     try {//removes non-asci chars, control chars, and probably other BS we dont care about
         monsters = JSON.parse(
             document.getElementById('small-input').value
-                .replace(/[^\x00-\x7F]/g, "")
-                .replace(/[\u0000-\u001F\u007F-\u009F]/g, "")
+                .normalize("NFD") // Décompose les caractères accentués en caractères de base + diacritiques
+                .replace(/[\u0300-\u036f]/g, "") // Supprime les diacritiques
+                .replace(/[^\x00-\x7F]/g, "") // Supprime les caractères non-ASCII restants
+                .replace(/[\u0000-\u001F\u007F-\u009F]/g, "") // Supprime les caractères de contrôle
         );
     } catch (error) {
         document.getElementById('title').style.display = 'block';
@@ -917,10 +919,13 @@ const onFormatButtonClick = async () => {
     document.getElementById('small-input').value = '';
 
     let bans = document.getElementById('small-input2').value
-        .replace(/[^\x00-\x7F\n]/g, "") // keep ASCII chars and \n
+        .normalize("NFD") // Décompose les caractères accentués en caractères de base + diacritiques
+        .replace(/[\u0300-\u036f]/g, "") // Supprime les diacritiques
+        .replace(/[^\x00-\x7F\n]/g, "") // Garde les caractères ASCII et les retours à la ligne (\n)
         .replace(/[\u0000-\u001F\u007F-\u009F]/g, function (char) {
-            return char === "\n" ? "\n" : ""; // removes control chars but not newlines (\n) because it's the separator specified to the user.
+            return char === "\n" ? "\n" : ""; // Supprime les caractères de contrôle, sauf les retours à la ligne (\n)
         });
+    
 
     document.getElementById('small-input2').value = '';
 
@@ -1071,12 +1076,38 @@ const onTierButtonClick = async () => {
 
 
     // contenders list for the user, sorted by global score
-    let contendersListStr = `<br>=============================<br>&emsp;&emsp;&emsp;Current Contenders<br>=============================<br>RANK&emsp;&emsp;NAME(ID)&emsp;&emsp;&emsp;&emsp;METASCORE<br>`;
+    let monstersToTable = (monsters) => {
+        let table = "<br><h2>Contenders List</h2><table>";
+        // En-têtes du tableau
+        table += `
+            <tr>
+                <th>RANK</th>
+                <th>NAME (ID)</th>
+                <th>METASCORE</th>
+            </tr>
+        `;
+        // Lignes du tableau
+        monsters.forEach((monster, index) => {
+            table += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${monster.name} (${monster.id})</td>
+                    <td>${monster.globalWeightedEdge.toFixed(2)}</td>
+                </tr>
+            `;
+        });
+        table += "</table>";
+        return table;
+    }
+
+    document.getElementById('content').innerHTML = monstersToTable(formattedMonsters);
+
+    /*let contendersListStr = `<br>=============================<br>&emsp;&emsp;&emsp;Current Contenders<br>=============================<br>RANK&emsp;&emsp;NAME(ID)&emsp;&emsp;&emsp;&emsp;METASCORE<br>`;
     let tmpcounter = 1;
     formattedMonsters.forEach((monster) => {
         contendersListStr += `${tmpcounter++}&emsp;&emsp;&emsp;&emsp;${monster.name}(${monster.id})&emsp;&emsp;&emsp;&emsp;${(monster.globalWeightedEdge).toFixed(2)}<br>`;
     });
-    document.getElementById('content').innerHTML = contendersListStr;
+    document.getElementById('content').innerHTML = contendersListStr;*/
 
 };
 
@@ -1402,8 +1433,31 @@ const onContendersButtonClick = async () => {
     document.getElementById('content').innerHTML = ``;
     document.getElementById('extraContent').innerHTML = ``;
 
-    document.getElementById('title').innerHTML = `Best Party is:`;
+    document.getElementById('title').innerHTML = `Optimal Party is:`;
 
+    let partyToTable = (monsters) => {
+        let table = "<table>";
+        // En-têtes du tableau
+        table += `
+            <tr>
+                <th>NAME (ID)</th>
+            </tr>
+        `;
+        // Lignes du tableau
+        monsters.forEach((monster, index) => {
+            table += `
+                <tr>
+                    <td>${monster.name} (${monster.id})</td>
+                </tr>
+            `;
+        });
+        table += "</table>";
+        return table + "<br><br>";
+    }
+
+    document.getElementById('content').innerHTML = partyToTable(finalBestParty);
+
+    /*
     let bestPartyText = `NAME(ID)<br><br>`;
     finalBestParty.forEach((monster) => {
         bestPartyText += `${monster.name}(${monster.id})<br>`;
@@ -1411,6 +1465,8 @@ const onContendersButtonClick = async () => {
     bestPartyText += `<br>`;
 
     document.getElementById('content').innerHTML = bestPartyText;
+    */
+
     document.getElementById('end').style.display = 'block';
 
 };
