@@ -104,7 +104,7 @@ CSS? never heard of that.
 
 ## Special Thanks
 
-- [Tommy Odland](https://github.com/tommyod) and his [paper on the topic](https://tommyodland.com/articles/2021/the-best-pokemon-party/) which gave me the inspiration to do that.
+- [Tommy Odland](https://github.com/tommyod) for his [paper on the topic](https://tommyodland.com/articles/2021/the-best-pokemon-party/) which gave me the inspiration to do that.
 - [The PokeMMO team](https://pokemmo.com), obviously. (Which this project is not affiliated with)
 - Some japanese company that likes balls.
   
